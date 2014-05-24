@@ -10,6 +10,7 @@ Este un pequeño ejemplo de los 7 principales sorts, entre ellos se encuentran:
   5. Quicksort
   6. Merge sort
   7. Radix sort
+
 Se presenta un codigo donde el usuario selecciona el tipo de sort y el tamaño del arreglo de números a ordenar,
 las opciones a tomar en cuenta son 10, 100, 1000, 10000, 100000, 1000000. A pesar de que todos son algoritmos de
 ordenamiento, no todos obtienen el mismo tiempo de ejecucion. En el informe se incluye una prueba promediada de
