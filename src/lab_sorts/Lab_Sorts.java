@@ -11,56 +11,51 @@ public class Lab_Sorts {
         Lab_Sorts lab=new Lab_Sorts();
         Scanner in =new Scanner(System.in);
         Random r=new Random();
-        long timeB=0, timeF=0, total=0;
+        long timeA=0;
+        double total=0.0;
         String resp="";
         do{
             int n=lab.submenu();
             int cant=lab.tamañoArray();
             if (cant==10 || cant==100 || cant==1000 || cant==10000 || cant==100000 || cant==1000000){//valida si el tamaño del array es correcto
-                int Sort[]=new int[cant];
-                System.out.println("\nArreglo sin ordenar:");
-                for (int i = 0; i < cant; i++) {
-                    Sort[i]=r.nextInt(100);
-                    System.out.print(" "+Sort[i]+" ");
-                }
-                System.out.println("\n");
-        
-                switch (n){
-                    case 1: 
-                        timeB=System.currentTimeMillis();
-                        lab.bubbleSort(Sort);
-                        timeF=System.nanoTime();
-                    case 2:
-                        timeB=System.currentTimeMillis();
-                        lab.insertionSort(Sort);
-                        timeF=System.currentTimeMillis();
-                    case 3:
-                        timeB=System.currentTimeMillis();
-                        lab.selectionSort(Sort);
-                        timeF=System.currentTimeMillis();
-                    case 4:
-                        timeB=System.currentTimeMillis();
-                        lab.ordenacionMonticulos(Sort);
-                        timeF=System.currentTimeMillis();
-                    case 5:
-                        timeB=System.currentTimeMillis();
-                        lab.ordenacionMonticulos(Sort);
-                        timeF=System.currentTimeMillis();
-                    case 6:
-                        timeB=System.currentTimeMillis();
-                        lab.mergeSort(Sort);
-                        timeF=System.currentTimeMillis();
-                    case 7:
-                        timeB=System.currentTimeMillis();
-                        lab.radixSort(Sort);
-                        timeF=System.currentTimeMillis();
-                }
-                total=timeF-timeB;
-                System.out.println("Arreglo Ordenado: ");
-                for (int i = 0; i < cant; i++) {
-                    System.out.print(" "+Sort[i]+" ");
-                }
-                System.out.print("\n\nEl tiempo es: "+total);
+                for(int veces=0;veces<10;veces++){
+                    int Sort[]=new int[cant];
+                    System.out.println("\nArreglo sin ordenar:");
+                    for (int i = 0; i < cant; i++) {
+                        Sort[i]=r.nextInt(100);
+                        System.out.print(" "+Sort[i]+" ");
+                    }System.out.println("");
+                    switch (n){
+                        case 1:
+                            timeA=System.nanoTime();
+                            lab.bubbleSort(Sort);
+                        case 2:
+                            timeA=System.nanoTime();
+                            lab.insertionSort(Sort);
+                        case 3:
+                            timeA=System.nanoTime();
+                            lab.selectionSort(Sort);
+                        case 4:
+                            timeA=System.nanoTime();
+                            lab.ordenacionMonticulos(Sort);
+                        case 5:
+                            timeA=System.nanoTime();
+                            lab.ordenacionMonticulos(Sort);
+                        case 6:
+                            timeA=System.nanoTime();
+                            lab.mergeSort(Sort);
+                        case 7:
+                            timeA=System.nanoTime();
+                            lab.radixSort(Sort);
+                    }//end switch
+                    total=total + (Double.valueOf(System.nanoTime()-timeA)*0.000000001);
+                    System.out.println("Arreglo Ordenado: ");
+                    for (int i = 0; i < cant; i++) {
+                        System.out.print(" "+Sort[i]+" ");
+                    }System.out.println("\n");
+                }//end for
+                total=total/10;
+                System.out.print("\n\nEl tiempo es: "+total+" segundos");
                 System.out.println("\n\nDesea continuar(si/no):\n");
                 resp=in.nextLine();
             }else{
