@@ -11,51 +11,30 @@ public class Lab_Sorts {
         Lab_Sorts lab=new Lab_Sorts();
         Scanner in =new Scanner(System.in);
         Random r=new Random();
-        long timeA=0;
         double total=0.0;
         String resp="";
         do{
             int n=lab.submenu();
             int cant=lab.tamañoArray();
             if (cant==10 || cant==100 || cant==1000 || cant==10000 || cant==100000 || cant==1000000){//valida si el tamaño del array es correcto
-                for(int veces=0;veces<10;veces++){
-                    int Sort[]=new int[cant];
+                int Sort[]=new int[cant];
+                for(int veces=0;veces<10;veces++){//se realizara 10 veces 
+                    System.out.println("--------- "+(veces+1)+" ---------");
                     System.out.println("\nArreglo sin ordenar:");
-                    for (int i = 0; i < cant; i++) {
-                        Sort[i]=r.nextInt(100);
+                    for (int i = 0; i < cant; i++) {//se llenara el arreglo y lo imprimi sin ordenar
+                        Sort[i]=r.nextInt(10000);
                         System.out.print(" "+Sort[i]+" ");
-                    }System.out.println("");
-                    switch (n){
-                        case 1:
-                            timeA=System.nanoTime();
-                            lab.bubbleSort(Sort);
-                        case 2:
-                            timeA=System.nanoTime();
-                            lab.insertionSort(Sort);
-                        case 3:
-                            timeA=System.nanoTime();
-                            lab.selectionSort(Sort);
-                        case 4:
-                            timeA=System.nanoTime();
-                            lab.ordenacionMonticulos(Sort);
-                        case 5:
-                            timeA=System.nanoTime();
-                            lab.ordenacionMonticulos(Sort);
-                        case 6:
-                            timeA=System.nanoTime();
-                            lab.mergeSort(Sort);
-                        case 7:
-                            timeA=System.nanoTime();
-                            lab.radixSort(Sort);
-                    }//end switch
-                    total=total + (Double.valueOf(System.nanoTime()-timeA)*0.000000001);
+                    }//end for
+                    System.out.println("");
+                    total=total+lab.tipo(n, Sort);
                     System.out.println("Arreglo Ordenado: ");
-                    for (int i = 0; i < cant; i++) {
+                    for (int i = 0; i < cant; i++) {// imprime el arreglo ya ordenado
                         System.out.print(" "+Sort[i]+" ");
-                    }System.out.println("\n");
+                    }//end for
+                    System.out.println("\n");
                 }//end for
-                total=total/10;
-                System.out.print("\n\nEl tiempo es: "+total+" segundos");
+                total=total/10;//total de tiempo entre 10 veces que se realiza
+                System.out.print("\n\nEl tiempo promedio es: "+total+" segundos");
                 System.out.println("\n\nDesea continuar(si/no):\n");
                 resp=in.nextLine();
             }else{
@@ -65,6 +44,43 @@ public class Lab_Sorts {
         }while (resp.equals("si") || resp.equals("Si"));//end while
     }//end main
 
+    public double tipo(int n, int Sort[]){
+        Lab_Sorts lab=new Lab_Sorts();
+        long timeA=0;
+        double total=0.0;
+        switch (n){
+            case 1:
+                timeA=System.nanoTime();
+                lab.bubbleSort(Sort);
+                total=Double.valueOf(System.nanoTime()-timeA)*0.000000001;
+            case 2:
+                timeA=System.nanoTime();
+                lab.insertionSort(Sort);
+                total=Double.valueOf(System.nanoTime()-timeA)*0.000000001;
+            case 3:
+                timeA=System.nanoTime();
+                lab.selectionSort(Sort);
+                total=Double.valueOf(System.nanoTime()-timeA)*0.000000001;
+            case 4:
+                timeA=System.nanoTime();
+                lab.ordenacionMonticulos(Sort);
+                total=Double.valueOf(System.nanoTime()-timeA)*0.000000001;
+            case 5:
+                timeA=System.nanoTime();
+                lab.ordenacionMonticulos(Sort);
+                total=Double.valueOf(System.nanoTime()-timeA)*0.000000001;
+            case 6:
+                timeA=System.nanoTime();
+                lab.mergeSort(Sort);
+                total=Double.valueOf(System.nanoTime()-timeA)*0.000000001;
+            case 7:
+                timeA=System.nanoTime();
+                lab.radixSort(Sort);
+                total=Double.valueOf(System.nanoTime()-timeA)*0.000000001;
+        }//end switch
+        return total;
+    }
+    
     private int valida(int cant) {
         int c=cant;
         if(c==10){
